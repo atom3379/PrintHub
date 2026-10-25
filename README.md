@@ -64,7 +64,7 @@ Add/configure your printer in your distribution's printer settings or CUPS admin
 
 ### 2. Get the code
 
-    git clone <YOUR_PUBLIC_GITHUB_REPOSITORY_URL>
+    git clone https://github.com/atom3379/PrintHub.git
     cd PrintHub
 
 Replace the placeholder with the HTTPS or SSH URL of the repository. If you cloned into a directory with a different name, cd into that directory instead.
