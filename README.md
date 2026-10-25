@@ -28,11 +28,10 @@ PrintHub is a self-hosted web dashboard for previewing documents and sending pri
 You do **not** need to install Python, Node.js, CUPS or the project on your Windows PC if PrintHub is already running on a Linux server.
 
 1. Make sure the Linux server is running and reachable.
-2. If the server is shared over Tailscale, install Tailscale on Windows and sign in to the **same Tailnet** as the server.
-3. Open the server's PrintHub address in a browser. For a local network deployment, use the server's LAN address and port shown by the person administering it. For Tailscale, use the server's Tailscale address and frontend port.
-4. Upload a document or image, check its preview and print options, then submit the job.
+2. Open the PrintHub address provided by the server administrator in a browser. The server must be reachable from your device over the configured private network.
+3. Upload a document or image, check its preview and print options, then submit the job.
 
-If the page does not open, check that the server is on, both devices are connected to the same network/Tailnet, and the frontend service is running. The backend should remain private behind the frontend proxy; do not expose port 8000 directly.
+If the page does not open, check that the server is running, your device can reach it over the configured network, and the frontend service is running. The backend should remain private behind the frontend proxy; do not expose port 8000 directly.
 
 ### Developing on Windows
 
@@ -184,4 +183,4 @@ From the project root:
 
 ## Security note
 
-PrintHub currently has no authentication or authorization. Anyone who can reach the interface may be able to upload files and submit print jobs. Keep it on a trusted private network (or behind an authenticated VPN/reverse proxy). Do not port-forward it or expose it directly to the internet.
+PrintHub currently has no authentication or authorization. Anyone who can reach the interface may be able to upload files and submit print jobs. Keep it on a trusted private network. Do not port-forward it or expose it directly to the internet.
