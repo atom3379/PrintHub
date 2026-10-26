@@ -1,5 +1,7 @@
 # PrintHub
 
+**ภาษาไทย:** [อ่านคู่มือภาษาไทยที่ README-TH.md](README-TH.md)
+
 PrintHub is a self-hosted web dashboard for previewing documents and sending print jobs to a printer managed by CUPS. The interface uses React/Vite; the API uses FastAPI.
 
 > **Project status:** early development. Test with non-sensitive documents first. There is currently no user authentication or access control. Do not expose the service directly to the public internet.
@@ -14,7 +16,7 @@ PrintHub is a self-hosted web dashboard for previewing documents and sending pri
 - Save job metadata locally in storage/jobs.json.
 
 **Current limitations**
-- The print server/backend is designed for Linux with CUPS. Windows is supported as a browser client; for a Windows-hosted development environment, use WSL 2 with Ubuntu.
+- The print server/backend is designed for Linux with CUPS.
 - The server must have a CUPS-compatible printer configured before printing works.
 - Duplex printing depends on the printer and its driver; printers without automatic duplex require manual page flipping.
 - No authentication, user accounts, real-time queue management, or public-internet deployment hardening yet.
@@ -22,25 +24,6 @@ PrintHub is a self-hosted web dashboard for previewing documents and sending pri
 - Conversion of office documents requires LibreOffice. Upload limit is 50 MB.
 - Image preview/printing depends on Pillow and the image format. SVG/HEIC/HEIF preview support may require extra libraries and is not guaranteed on every installation.
 - Printer paper and ink levels may display as unknown if the printer does not report them through CUPS.
-
-## Using PrintHub from Windows
-
-You do **not** need to install Python, Node.js, CUPS or the project on your Windows PC if PrintHub is already running on a Linux server.
-
-1. Make sure the Linux server is running and reachable.
-2. Open the PrintHub address provided by the server administrator in a browser. The server must be reachable from your device over the configured private network.
-3. Upload a document or image, check its preview and print options, then submit the job.
-
-If the page does not open, check that the server is running, your device can reach it over the configured network, and the frontend service is running. The backend should remain private behind the frontend proxy; do not expose port 8000 directly.
-
-### Developing on Windows
-
-The current backend relies on Linux CUPS commands such as lpstat and lp, so running the full print server natively on Windows is **not supported**. Recommended setup:
-
-1. Install WSL 2 and an Ubuntu distribution.
-2. Follow the Ubuntu/Linux setup below inside WSL 2.
-3. For actual printing, ensure WSL can reach a working CUPS server and printer. Printer discovery and USB passthrough may need extra configuration; a separate Linux host running CUPS is usually simpler.
-4. Use PowerShell for Windows-side Git commands if preferred, or use Git inside WSL consistently.
 
 ## Linux server setup
 
@@ -66,7 +49,7 @@ Add/configure your printer in your distribution's printer settings or CUPS admin
     git clone https://github.com/atom3379/PrintHub.git
     cd PrintHub
 
-Replace the placeholder with the HTTPS or SSH URL of the repository. If you cloned into a directory with a different name, cd into that directory instead.
+
 
 ### 3. Install backend dependencies
 
