@@ -71,9 +71,9 @@ Open a second terminal at the project root:
 
     cd frontend
     npm install
-    npm run dev -- --host 127.0.0.1
+    npm run dev -- --host 0.0.0.0
 
-Open http://127.0.0.1:5173 in a browser on that same machine. Vite proxies API requests to the backend at 127.0.0.1:8000.
+Open http://127.0.0.1:5173 on the server itself. To access it from another device on the same LAN, use http://<server-LAN-IP>:5173 (find the address with hostname -I). Vite proxies API requests to the backend at 127.0.0.1:8000. Keep access limited to a trusted network.
 
 To build the frontend for a production-style deployment:
 

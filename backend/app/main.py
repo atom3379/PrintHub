@@ -106,9 +106,9 @@ def jobs() -> dict[str, list[Any]]:
     for item in saved_jobs:
         extension = str(item.get("extension", Path(str(item.get("name", ""))).suffix)).lower()
         item["can_print_now"] = extension in printable_extensions and printer_available
-        if extension in {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".gif", ".tif", ".tiff", ".svg"}:
+        if extension == ".svg":
             item["preview_url"] = f"/uploads/{item.get('id')}{extension}"
-        elif extension == ".pdf" or extension in OFFICE_EXTENSIONS:
+        elif extension in {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".gif", ".tif", ".tiff", ".pdf"} or extension in OFFICE_EXTENSIONS:
             item["preview_url"] = f"/api/preview/{item.get('id')}"
     return {"jobs": sorted(saved_jobs, key=lambda item: item.get("created_at", ""), reverse=True)}
 
@@ -215,7 +215,7 @@ async def upload_file(file: UploadFile = File(...)) -> dict[str, Any]:
         "name": original_name,
         "size": total,
         "extension": extension,
-        "preview_url": (f"/uploads/{safe_name}" if extension in {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".gif", ".tif", ".tiff", ".svg"} else f"/api/preview/{job_id}" if extension == ".pdf" or extension in OFFICE_EXTENSIONS else None),
+        "preview_url": (f"/uploads/{safe_name}" if extension == ".svg" else f"/api/preview/{job_id}" if extension in {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".gif", ".tif", ".tiff", ".pdf"} or extension in OFFICE_EXTENSIONS else None),
         "can_print_now": (extension == ".pdf" or extension in OFFICE_EXTENSIONS or extension in {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".gif", ".tif", ".tiff"}) and bool(get_printer_status()["configured"]),
         "status": "uploaded",
         "created_at": datetime.now(timezone.utc).isoformat(),
